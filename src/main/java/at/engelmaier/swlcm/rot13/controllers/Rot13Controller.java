@@ -11,12 +11,12 @@ import java.util.Locale;
 @Path("/api/rot13/")
 public class Rot13Controller {
 
-    private final int delta = 13;
+    private static final int delta = 13;
 
     @GET
     @Path("/{sourceString}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getRot13StringFromSourceString(@PathParam("sourceString") String sourceString) {
+    public static String getRot13StringFromSourceString(@PathParam("sourceString") String sourceString) {
         StringBuffer returnValue = new StringBuffer(sourceString);
         for (int i = 0; i < returnValue.length(); i++) {
             int c = returnValue.charAt(i);
@@ -29,7 +29,7 @@ public class Rot13Controller {
         return returnValue.toString();
     }
 
-    private int remove26IfHigher(int c) {
+    private static int remove26IfHigher(int c) {
         if (c > 26) {
             c = c - 26;
         }
